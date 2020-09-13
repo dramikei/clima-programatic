@@ -58,6 +58,20 @@ class WeatherVC: UIViewController {
         imageView.image = UIImage(systemName: "sun.max")
        return imageView
     }()
+    
+    var tempLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 80, weight: .black)
+        label.text = "21°C"
+        return label
+    }()
+    
+    var cityLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 30)
+        label.text = "London"
+        return label
+    }()
 
 
     override func viewDidLoad() {
@@ -66,11 +80,27 @@ class WeatherVC: UIViewController {
         view.addSubview(backgroundImage)
         view.addSubview(topStackView)
         view.addSubview(weatherImageView)
+        view.addSubview(tempLabel)
+        view.addSubview(cityLabel)
         configureBgImageView()
         configureTopStackView()
         configureWeatherImageView()
+        configureTempLabel()
+        configureCityLabel()
     }
     
+    
+    private func configureCityLabel() {
+        cityLabel.translatesAutoresizingMaskIntoConstraints = false
+        cityLabel.topAnchor.constraint(equalTo: tempLabel.bottomAnchor, constant: 5).isActive = true
+        cityLabel.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -20).isActive = true
+    }
+    
+    private func configureTempLabel() {
+        tempLabel.translatesAutoresizingMaskIntoConstraints = false
+        tempLabel.topAnchor.constraint(equalTo: weatherImageView.bottomAnchor, constant: 20).isActive = true
+        tempLabel.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -20).isActive = true
+    }
     
     private func configureWeatherImageView() {
         weatherImageView.translatesAutoresizingMaskIntoConstraints = false
