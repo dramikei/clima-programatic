@@ -52,6 +52,12 @@ class WeatherVC: UIViewController {
         button.heightAnchor.constraint(equalToConstant: 40).isActive = true
         return button
     }()
+    
+    var weatherImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "sun.max")
+       return imageView
+    }()
 
 
     override func viewDidLoad() {
@@ -59,8 +65,20 @@ class WeatherVC: UIViewController {
         view.backgroundColor = .white
         view.addSubview(backgroundImage)
         view.addSubview(topStackView)
+        view.addSubview(weatherImageView)
         configureBgImageView()
         configureTopStackView()
+        configureWeatherImageView()
+    }
+    
+    
+    private func configureWeatherImageView() {
+        weatherImageView.translatesAutoresizingMaskIntoConstraints = false
+        weatherImageView.topAnchor.constraint(equalTo: topStackView.bottomAnchor, constant: 20).isActive = true
+        weatherImageView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -20).isActive = true
+        weatherImageView.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        weatherImageView.heightAnchor.constraint(equalToConstant: 120).isActive = true
+        weatherImageView.tintColor = UIColor(named: "bgColor")
     }
     
     
@@ -96,7 +114,7 @@ class WeatherVC: UIViewController {
 //
 //    @available(iOS 13.0.0, *)
 //    func makeUIViewController(context: Context) -> UIViewController {
-//        ViewController()
+//        WeatherVC()
 //    }
 //}
 //
