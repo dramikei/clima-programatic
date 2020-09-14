@@ -9,6 +9,8 @@ import UIKit
 
 class WeatherVC: UIViewController {
     
+    //MARK: - UI Elements
+    
     var backgroundImage: UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "background"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -31,6 +33,7 @@ class WeatherVC: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.widthAnchor.constraint(equalToConstant: 40).isActive = true
         button.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        button.addTarget(self, action: #selector(locationBtnPressed), for: .touchUpInside)
         return button
     }()
     
@@ -40,6 +43,7 @@ class WeatherVC: UIViewController {
         textField.backgroundColor = .systemFill
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Search"
+        textField.returnKeyType = .go
         return textField
     }()
     
@@ -50,6 +54,7 @@ class WeatherVC: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.widthAnchor.constraint(equalToConstant: 40).isActive = true
         button.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        button.addTarget(self, action: #selector(searchBtnPressed), for: .touchUpInside)
         return button
     }()
     
@@ -72,6 +77,11 @@ class WeatherVC: UIViewController {
         label.text = "London"
         return label
     }()
+    
+    
+    //MARK: - Variables
+    
+    var manager = WeatherManager()
 
 
     override func viewDidLoad() {
@@ -87,8 +97,13 @@ class WeatherVC: UIViewController {
         configureWeatherImageView()
         configureTempLabel()
         configureCityLabel()
+        
+        searchTextField.delegate = self
+        manager.delegate = self
     }
     
+    
+    //MARK: - UI config
     
     private func configureCityLabel() {
         cityLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -132,8 +147,63 @@ class WeatherVC: UIViewController {
         
         
     }
+    
+    
+    //MARK: - Action functions
+    
+    @objc func searchBtnPressed() {
+        searchTextField.endEditing(true)
+    }
+    
+    @objc func locationBtnPressed() {
+        
+    }
 
 
+}
+
+
+//MARK: - UITextFieldDelegate
+
+extension WeatherVC: UISearchTextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        searchTextField.endEditing(true)
+        return true
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        if textField.text! == "" {
+            textField.placeholder = "Type something"
+            return false
+        }
+        textField.placeholder = "Search"
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let city = searchTextField.text {
+            manager.fetchWeather(cityName: city)
+        }
+        searchTextField.text = ""
+        
+    }
+}
+
+
+extension WeatherVC: WeatherManagerDelegate {
+    func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel) {
+        DispatchQueue.main.async {
+            self.cityLabel.text = weather.cityName
+            self.tempLabel.text = weather.tempString + "°C"
+            self.weatherImageView.image = UIImage(systemName: weather.condition)
+        }
+        
+    }
+    
+    func didFailWithError(error: Error) {
+        print("Error occured: \(error)")
+    }
 }
 
 //#if DEBUG
