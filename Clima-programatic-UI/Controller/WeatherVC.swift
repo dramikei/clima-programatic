@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class WeatherVC: UIViewController {
     
@@ -82,6 +83,7 @@ class WeatherVC: UIViewController {
     //MARK: - Variables
     
     var manager = WeatherManager()
+    var locationManager = CLLocationManager()
 
 
     override func viewDidLoad() {
@@ -97,9 +99,11 @@ class WeatherVC: UIViewController {
         configureWeatherImageView()
         configureTempLabel()
         configureCityLabel()
-        
         searchTextField.delegate = self
         manager.delegate = self
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestLocation()
     }
     
     
@@ -155,11 +159,31 @@ class WeatherVC: UIViewController {
         searchTextField.endEditing(true)
     }
     
+    
     @objc func locationBtnPressed() {
-        
+        locationManager.requestLocation()
     }
 
 
+}
+
+//MARK: - CLLocationManagerDelegate
+
+extension WeatherVC: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Failed with error: \(error)")
+    }
+    
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let loc = locations.last {
+            locationManager.stopUpdatingLocation()
+            let lat = loc.coordinate.latitude
+            let long = loc.coordinate.longitude
+            self.manager.fetchWeather(latitude: lat, longitude: long)
+        }
+    }
 }
 
 
@@ -190,6 +214,8 @@ extension WeatherVC: UISearchTextFieldDelegate {
     }
 }
 
+
+//MARK: - WeatherManagerDelegate
 
 extension WeatherVC: WeatherManagerDelegate {
     func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel) {
