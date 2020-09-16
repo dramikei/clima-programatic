@@ -10,9 +10,6 @@ import CoreLocation
 
 class WeatherVC: UIViewController {
     
-    //MARK: - UI Elements
-    
-    
     //MARK: - Variables
     var weatherView = WeatherView()
     var manager = WeatherManager()
@@ -30,10 +27,6 @@ class WeatherVC: UIViewController {
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
     }
-    
-    
-    //MARK: - UI config
-    
     
     
     //MARK: - Action functions

@@ -6,14 +6,15 @@
 //
 
 import UIKit
+import LBTATools
 
 class WeatherView: UIView {
     
     var backgroundImage: UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "background"))
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
+    
     
     var topStackView: UIStackView = {
         let stackView = UIStackView()
@@ -25,52 +26,43 @@ class WeatherView: UIView {
     }()
     
     var locationBtn: UIButton = {
-        let button = UIButton()
-        button.setBackgroundImage(UIImage(systemName: "location.circle.fill"), for: .normal)
-        button.tintColor = .label
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        let button = UIButton(image: UIImage(systemName: "location.circle.fill")!, tintColor: .label)
+//        button.setBackgroundImage(UIImage(systemName: "location.circle.fill"), for: .normal)
+        button.constrainWidth(40)
+        button.constrainHeight(40)
         return button
     }()
     
     var searchTextField: UITextField = {
-        let textField = UITextField()
+        let textField = UITextField(placeholder: "Search")
         textField.borderStyle = .roundedRect
         textField.backgroundColor = .systemFill
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = "Search"
         textField.returnKeyType = .go
         return textField
     }()
     
+    
+    
     var searchBtn: UIButton = {
-        let button = UIButton()
-        button.setBackgroundImage(UIImage(systemName: "magnifyingglass"), for: .normal)
-        button.tintColor = .label
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        let button = UIButton(image: UIImage(systemName: "magnifyingglass")!, tintColor: .label)
+//        button.setBackgroundImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+        button.constrainWidth(40)
+        button.constrainHeight(40)
         return button
     }()
     
     var weatherImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "sun.max")
+        let imageView = UIImageView(image: UIImage(systemName: "sun.max"))
        return imageView
     }()
     
     var tempLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 80, weight: .black)
-        label.text = "21°C"
+        let label = UILabel(text: "21°C", font: .systemFont(ofSize: 80, weight: .black), textColor: .label, numberOfLines: 1)
         return label
     }()
     
     var cityLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 30)
-        label.text = "London"
+        let label = UILabel(text: "London", font: .systemFont(ofSize: 30), textColor: .label, numberOfLines: 1)
         return label
     }()
     
@@ -106,6 +98,8 @@ class WeatherView: UIView {
     
     
     private func configureTopStackView() {
+//        topStackView = hstack( locationBtn, searchTextField, searchBtn, spacing: 20, alignment: .fill, distribution: .fill)
+        
         topStackView.anchor(top: safeAreaLayoutGuide.topAnchor, leading: safeAreaLayoutGuide.leadingAnchor, bottom: nil, trailing: safeAreaLayoutGuide.trailingAnchor, padding: .init(top: 10, left: 20, bottom: 0, right: 20), size: .init())
         [locationBtn, searchTextField, searchBtn].forEach { (elem) in
             topStackView.addArrangedSubview(elem)
