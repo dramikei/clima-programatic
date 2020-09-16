@@ -17,6 +17,7 @@
 		68774C4B250E5236008CD760 /* WeatherVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68774C4A250E5236008CD760 /* WeatherVC.swift */; };
 		68774C50250E5238008CD760 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68774C4F250E5238008CD760 /* Assets.xcassets */; };
 		68774C53250E5238008CD760 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68774C51250E5238008CD760 /* LaunchScreen.storyboard */; };
+		BC98F3D7F79088A4380A6B12 /* Pods_Clima_programatic_UI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91BCB7E749004CC05FE88E1 /* Pods_Clima_programatic_UI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,9 @@
 		68774C4F250E5238008CD760 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		68774C52250E5238008CD760 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		68774C54250E5238008CD760 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B80D02009427D5733B1A2846 /* Pods-Clima-programatic-UI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Clima-programatic-UI.debug.xcconfig"; path = "Target Support Files/Pods-Clima-programatic-UI/Pods-Clima-programatic-UI.debug.xcconfig"; sourceTree = "<group>"; };
+		BF64FA3ABAEA92AC6948077E /* Pods-Clima-programatic-UI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Clima-programatic-UI.release.xcconfig"; path = "Target Support Files/Pods-Clima-programatic-UI/Pods-Clima-programatic-UI.release.xcconfig"; sourceTree = "<group>"; };
+		C91BCB7E749004CC05FE88E1 /* Pods_Clima_programatic_UI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Clima_programatic_UI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,12 +43,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC98F3D7F79088A4380A6B12 /* Pods_Clima_programatic_UI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5BE28D8FA9B832A82D2D7F06 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C91BCB7E749004CC05FE88E1 /* Pods_Clima_programatic_UI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		682B03E5250F8F9B000780BF /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +98,8 @@
 			children = (
 				68774C45250E5236008CD760 /* Clima-programatic-UI */,
 				68774C44250E5236008CD760 /* Products */,
+				FE400B036B5A2D2EB24CAAD4 /* Pods */,
+				5BE28D8FA9B832A82D2D7F06 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -111,6 +126,16 @@
 			path = "Clima-programatic-UI";
 			sourceTree = "<group>";
 		};
+		FE400B036B5A2D2EB24CAAD4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B80D02009427D5733B1A2846 /* Pods-Clima-programatic-UI.debug.xcconfig */,
+				BF64FA3ABAEA92AC6948077E /* Pods-Clima-programatic-UI.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -118,9 +143,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 68774C57250E5238008CD760 /* Build configuration list for PBXNativeTarget "Clima-programatic-UI" */;
 			buildPhases = (
+				487E8B69F5B36FCA2650586C /* [CP] Check Pods Manifest.lock */,
 				68774C3F250E5236008CD760 /* Sources */,
 				68774C40250E5236008CD760 /* Frameworks */,
 				68774C41250E5236008CD760 /* Resources */,
+				67EF55C54B59073AC280E87B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -174,6 +201,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		487E8B69F5B36FCA2650586C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Clima-programatic-UI-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		67EF55C54B59073AC280E87B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Clima-programatic-UI/Pods-Clima-programatic-UI-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Clima-programatic-UI/Pods-Clima-programatic-UI-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Clima-programatic-UI/Pods-Clima-programatic-UI-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		68774C3F250E5236008CD760 /* Sources */ = {
@@ -323,6 +392,7 @@
 		};
 		68774C58250E5238008CD760 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B80D02009427D5733B1A2846 /* Pods-Clima-programatic-UI.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -342,6 +412,7 @@
 		};
 		68774C59250E5238008CD760 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BF64FA3ABAEA92AC6948077E /* Pods-Clima-programatic-UI.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
